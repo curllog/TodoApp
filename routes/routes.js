@@ -4,7 +4,13 @@ const Todo =require('../models/todo');
 
 router.get('/',function(req,res){
   Todo.find({}).then(function(result){
-    res.render("index",{todoList:result});
+    let todos=result.filter(function(todo){
+      return !todo.done;
+    })
+    let doneTodos=result.filter(function(todo){
+      return todo.done;
+    })
+    res.render("index",{todoList:todos,doneTodo:doneTodos});
   })
 });
 
