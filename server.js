@@ -2,7 +2,15 @@ const express = require('express');
 const mustacheExpress=require('mustache-express');
 const bodyParser=require('body-parser');
 const mongoose=require('mongoose');
-const router=require('./routes/routes')
+const router=require('./routes/routes');
+mongoose.Promis=global.Promise;
+
+
+mongoose.connect('mongodb://localhost:27017/todo_db',{
+}).then(function(){
+  console.log("Database worked!")
+})
+
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
