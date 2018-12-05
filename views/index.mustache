@@ -5,32 +5,42 @@
     <title>Todo </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
-  <body>
-    <div class="container">
+  <body dir="rtl">
+    <div class="container text-center">
 
-    <h1 class="text-light bg-dark text-center">Form for adding tasks</h1>
+    <h1 class="text-light bg-dark text-center">برنامه todo</h1>
+
+
+
+
     <form class="form-inline"  action="/todo" method="post">
-      <input class="input-group-text" type="text" name="todoText" value="" placeholder="Add your task here...">
-      <button class="btn btn-secondary" type="submit"   name="button">Add</button>
+      <input class="input-group-text" type="text" name="todoText" value="" placeholder="وظیفه مورد نظر را وارد کن">
+      <button class="btn btn-secondary" type="submit"   name="button">اضافه کن</button>
     </form>
-
-      <ul class="list-group">
+    <h3>تکمیل نشده</h3>
+  <ul class="list-group">
         {{#todoList}}
   <li class="list-group-item">
           <form class="" action="/todo/{{_id}}/completed" method="post">
-          {{description}} - {{done}} <button class="btn btn-primary" type="submit" name="button">Done</button>
+          {{description}}  <button class="btn btn-primary" type="submit" name="button">تکمیل شد</button>
           </form>
   </li>
         {{/todoList}}
       </ul>
 
 
-  <h3>Done</h3>
-  <ul>
+  <h3>تکمیل شده</h3>
 
-    {{#doneTodo}}
 
-    {{description}} - {done}
+
+    <ul class="list-group">
+  {{#doneTodo}}
+  <li class="list-group-item">
+
+    <form class="" action="/todo/{{_id}}/completed" method="post">
+    {{description}} <button class="btn btn-primary" type="submit" name="button">تکمیل نشده</button>
+    </form>
+</li>
     {{/doneTodo}}
   </ul>
 
